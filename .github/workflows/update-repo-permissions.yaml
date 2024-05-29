@@ -30,6 +30,8 @@ jobs:
               const repo = context.repo;
 
               // Create dev1 environment
+              const github = require('@actions/github');
+
               await github.repos.createDeploymentEnvironment({
               ...repo,
               environment: 'dev1'
