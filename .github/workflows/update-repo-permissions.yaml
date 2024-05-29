@@ -24,7 +24,7 @@ jobs:
       - name: Update Repo Permissions
         uses: actions/github-script@v4
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.MY_PAT }}
           script: |
             // const { context, github } = require('@actions/github');
 
