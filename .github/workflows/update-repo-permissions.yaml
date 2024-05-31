@@ -27,19 +27,19 @@ jobs:
           github-token: ${{ secrets.MY_PAT }}
           script: |
             const createEnvs = async () => {
-              await github.rest.repos.createDeploymentEnvironment({
+              await github.rest.repos.createOrUpdateEnvironment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 environment: 'dev1'
               });
 
-              await github.rest.repos.createDeploymentEnvironment({
+              await github.rest.repos.createOrUpdateEnvironment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 environment: 'qa1'
               });
 
-              await github.rest.repos.createDeploymentEnvironment({
+              await github.rest.repos.createOrUpdateEnvironment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 environment: 'sandbox'
