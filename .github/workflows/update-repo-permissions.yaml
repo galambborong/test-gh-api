@@ -30,19 +30,19 @@ jobs:
               await github.rest.repos.createOrUpdateEnvironment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                environment: 'dev1'
+                environment_name: 'dev1'
               });
 
               await github.rest.repos.createOrUpdateEnvironment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                environment: 'qa1'
+                environment_name: 'qa1'
               });
 
               await github.rest.repos.createOrUpdateEnvironment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                environment: 'sandbox'
+                environment_name: 'sandbox'
               });
             };
             createEnvs();
