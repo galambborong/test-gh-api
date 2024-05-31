@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Update Repo Permissions
+      - name: Create Repo Envs
         uses: actions/github-script@v5
         with:
           github-token: ${{ secrets.MY_PAT }}
@@ -46,3 +46,17 @@ jobs:
               });
             };
             createEnvs();
+
+      - name: Create Repo Branch Protection
+        uses: actions/github-script@v5
+        with:
+          github-token: ${{ secrets.MY_PAT }}
+          script: |
+            const updateBranchProtection = async () => {
+              await github.rest.repos.updateBranchProtection({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                branch: 'main',
+              });
+
+            updateBranchProtection();
