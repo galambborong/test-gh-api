@@ -58,5 +58,6 @@ jobs:
                 repo: context.repo.repo,
                 branch: 'main',
               });
+            }
 
             updateBranchProtection();
