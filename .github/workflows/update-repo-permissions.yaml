@@ -22,26 +22,27 @@ jobs:
         run: npm install
 
       - name: Update Repo Permissions
-        uses: actions/github-script@v4
+        uses: actions/github-script@v5
         with:
           github-token: ${{ secrets.MY_PAT }}
           script: |
-            async function run() {
-              const repo = context.repo;
-
-              // Create dev1 environment
-              const github = require('@actions/github');
-
-              await github.repos.createDeploymentEnvironment({
-              ...repo,
-              environment: 'dev1'
+            const createEnvs = async () => {
+              await github.rest.repos.createDeploymentEnvironment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                environment: 'dev1'
               });
 
-              // Create qa1 environment
-              await github.repos.createDeploymentEnvironment({
-              ...repo,
-              environment: 'qa1'
+              await github.rest.repos.createDeploymentEnvironment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                environment: 'qa1'
               });
-            }
 
-            run();
+              await github.rest.repos.createDeploymentEnvironment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                environment: 'sandbox'
+              });
+            };
+            createEnvs();
