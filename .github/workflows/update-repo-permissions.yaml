@@ -1,6 +1,7 @@
 name: Update Repo Permissions
 
 on:
+  workflow_dispatch: 
   push:
     branches:
       - main
